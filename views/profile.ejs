@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile | UniqueBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: black;
+    }
+  </style>
+</head>
+<body class="text-white font-sans">
+  <!-- Navbar -->
+  <nav class="bg-gray-950 p-4 shadow-lg">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold text-indigo-400 tracking-wide">UniqueBlog</a>
+      <div>
+        <a href="/blogs" class="text-gray-300 hover:text-indigo-300 mr-4">Blogs</a>
+        <a href="/logout" class="text-gray-300 hover:text-indigo-300">Logout</a>
+      </div>
+    </div>
+  </nav>
+<!-- Profile Section -->
+<section class="flex justify-center items-center min-h-screen px-4">
+    <div class="bg-gray-900 bg-opacity-80 p-8 rounded-3xl shadow-xl border border-gray-800 flex flex-col md:flex-row items-center md:items-start gap-8 max-w-3xl w-full">
+      <!-- Avatar -->
+      <div class="w-32 h-32 rounded-full bg-indigo-500 flex items-center justify-center text-4xl font-bold">
+        <%= user.username.charAt(0).toUpperCase() %>
+      </div>
+  
+      <!-- User Info -->
+      <div class="flex-1 text-center md:text-left">
+        <h2 class="text-3xl font-extrabold text-indigo-400 mb-2">
+          <%= user.username %>
+        </h2>
+        <p class="text-gray-300 text-sm mb-1"><strong>Email:</strong> <%= user.email %></p>
+        <p class="text-gray-400 text-xs">User ID: <%= user._id %></p>
+  
+   <!-- Buttons Side by Side -->
+  <div class="mt-6 flex flex-col sm:flex-row gap-4">
+         <a href="/blogs/create" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-sm font-medium transition text-center w-full sm:w-auto">
+        ✍️ Create New Blog
+        </a>
+          <a href="/logout" class="px-6 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-sm font-medium transition text-center w-full sm:w-auto">
+        🔒 Logout
+          </a>
+       </div>
+      </div>
+    </div>
+  </section>
+      <footer class="bg-gray-900 text-white text-center p-4 border-t border-gray-700">
+        <p class="text-sm">&copy; 2025 UniqueBlog. All rights reserved.</p>
+      </footer>
+    </body>
+    </html>
+    
