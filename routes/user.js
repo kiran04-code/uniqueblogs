@@ -9,6 +9,10 @@ const com = require("../model/comment")
 routes.get("/signup",(req,res)=>{
     res.render("signup")
 })
+
+routes.get("/signin",(req,res)=>{
+  res.render("signin")
+})
 routes.get("/logout",(req,res)=>{
    res.clearCookie("token").render("signin")
 })
@@ -18,25 +22,21 @@ routes.get("/seecommets/:id",async(req,res)=>{
   const coms = await com.find({blogId:userid}).populate('createdBy')
   res.render("commets",{coment:coms,posttitl:readmores})
 })
-routes.post("/signup",async(req,res)=>{
+routes.post("/signup", async (req, res) => {
   try {
-    const {username,email,password} = req.body
-  const res =   await user.create({
-        username,
-        email,
-        password
-    }) 
-    console.log(res)
-    res.render("signin")
+    const { username, email, password } = req.body;
+    const newuser = await user.create({
+      username,
+      email,
+      password
+    });
+    console.log(newuser);
+    res.render("signin"); // <<== This renders, not redirects!
   } catch (error) {
-    console.log(res)
-        
-    res.render("signup",{error:"Email Is Not Unique!"})
+    res.render("signup", { error: "Email Is Not Unique!" });
   }
-})
-routes.get("/signin",(req,res)=>{
-    res.render("signin")
-})
+});
+
 routes.post("/signin",async(req,res)=>{
    try {
     const {email,password} = req.body

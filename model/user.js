@@ -19,7 +19,7 @@ userSchema = new mongoose.Schema({
         require:true
     },
     salt:{
-
+        type:String,
     }
 })
 userSchema.pre("save",function(next){
