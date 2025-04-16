@@ -62,14 +62,14 @@
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
       <a href="/" class="text-2xl font-bold flex items-center space-x-1 justify-center md:justify-start">
 
-        <span class="text-indigo-400">Uni</span>
-      
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500 text-4xl drop-shadow-md font-extrabold italic">U</span>
-      
-        <span class="text-indigo-400">queBlog</span>
-      
-      </a>
-      
+  <span class="text-indigo-400">Uni</span>
+
+  <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500 text-4xl drop-shadow-md font-extrabold italic">U</span>
+
+  <span class="text-indigo-400">queBlog</span>
+
+</a>
+
       
       <!-- Desktop Menu -->
       <div class="flex space-x-4 mt-2 md:mt-0 hidden md:flex">
@@ -95,16 +95,18 @@
   
     <!-- Mobile Menu Dropdown -->
     <div id="mobile-menu" class="md:hidden hidden bg-gray-900 text-white p-4">
-      <% if (locals.user) { %>
-        <a href="/community" class="hover:text-indigo-300 text-sm md:text-base">Unique Community</a>
-        <a href="/post" class="hover:text-indigo-300 text-sm md:text-base">Add Post</a>
-        <a href="/profile" class="hover:text-indigo-300 text-sm md:text-base">Profile</a>
-
-      <% } else { %>
-        <a href="/signin" class="hover:text-indigo-300 text-sm md:text-base">Login</a>
-        <a href="/signup" class="hover:text-indigo-300 text-sm md:text-base">Signup</a>
-      <% } %>
+      <div class="flex flex-col space-y-2">
+        <% if (locals.user) { %>
+          <a href="/community" class="hover:text-indigo-300 text-sm md:text-base">Unique Community</a>
+          <a href="/post" class="hover:text-indigo-300 text-sm md:text-base">Add Post</a>
+          <a href="/profile" class="hover:text-indigo-300 text-sm md:text-base">Profile</a>
+        <% } else { %>
+          <a href="/signin" class="hover:text-indigo-300 text-sm md:text-base">Login</a>
+          <a href="/signup" class="hover:text-indigo-300 text-sm md:text-base">Signup</a>
+        <% } %>
+      </div>
     </div>
+    
   </nav>
 
   <!-- Hero Section -->

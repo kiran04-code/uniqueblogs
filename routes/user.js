@@ -10,6 +10,9 @@ const commun = require("../model/community")
 routes.get("/signup",(req,res)=>{
     res.render("signup")
 })
+routes.get("/commets",(req,res)=>{
+    res.render("commets")
+})
 
 routes.get("/signin",(req,res)=>{
   res.render("signin")
@@ -87,7 +90,7 @@ routes.get("/delete/:id",async(req,res)=>{
 routes.get("/deletecomment/:id",async(req,res)=>{
  const userid = req.params.id
  await com.findByIdAndDelete(userid )
- res.render("commets")
+ return res.redirect("/commets")
 })
 routes.get("/post",(req,res)=>{
   res.render("post")
