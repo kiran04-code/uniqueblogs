@@ -60,8 +60,17 @@
 
   <nav class="bg-gray-900 text-white p-4 shadow-md">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
-      <a href="/" class="text-2xl font-bold text-indigo-400">UniqueBlog</a>
-  
+      <a href="/" class="text-2xl font-bold flex items-center space-x-1 justify-center md:justify-start">
+
+        <span class="text-indigo-400">Uni</span>
+      
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500 text-4xl drop-shadow-md font-extrabold italic">U</span>
+      
+        <span class="text-indigo-400">queBlog</span>
+      
+      </a>
+      
+      
       <!-- Desktop Menu -->
       <div class="flex space-x-4 mt-2 md:mt-0 hidden md:flex">
         <% if (locals.user) { %>
@@ -86,21 +95,30 @@
   
     <!-- Mobile Menu Dropdown -->
     <div id="mobile-menu" class="md:hidden hidden bg-gray-900 text-white p-4">
-      <a href="/signin" class="block py-2 text-sm md:text-base hover:text-indigo-300">Login</a>
-      <a href="/signup" class="block py-2 text-sm md:text-base hover:text-indigo-300">Signup</a>
       <% if (locals.user) { %>
-        <a href="/profile" class="block py-2 text-sm md:text-base hover:text-indigo-300">Unique Community</a>
-        <a href="/post" class="block py-2 text-sm md:text-base hover:text-indigo-300">Add Post</a>
-        <a href="/community" class="block py-2 text-sm md:text-base hover:text-indigo-300">Profile</a>
+        <a href="/community" class="hover:text-indigo-300 text-sm md:text-base">Unique Community</a>
+        <a href="/post" class="hover:text-indigo-300 text-sm md:text-base">Add Post</a>
+        <a href="/profile" class="hover:text-indigo-300 text-sm md:text-base">Profile</a>
+
+      <% } else { %>
+        <a href="/signin" class="hover:text-indigo-300 text-sm md:text-base">Login</a>
+        <a href="/signup" class="hover:text-indigo-300 text-sm md:text-base">Signup</a>
       <% } %>
     </div>
   </nav>
 
   <!-- Hero Section -->
   <section class="flex flex-col items-center text-center py-16 px-4 sm:px-6 md:py-28">
-    <h1 id="hero-heading" class="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 leading-tight text-center text-indigo-400 tracking-tight">
-      Write. Inspire. Connect.
-    </h1>
+    <div class="w-full px-4">
+      <h1
+  id="hero-heading"
+  class="w-full text-center text-3xl sm:text-4xl md:text-6xl font-bold mb-6 leading-tight text-indigo-400 tracking-tight"
+>
+  Write. Inspire. Connect.
+</h1>
+
+    </div>
+    
     <p class="text-base md:text-lg max-w-2xl mx-auto text-gray-300 mb-10 font-light" style="font-family: Teachers;">
       Share your stories and ideas with the world. Join our creative blogging community today.
     </p>
