@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Welcome | UniqueBlog</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
+    /* Custom loader style */
     #loader {
       height: 100%;
       width: 100%;
@@ -56,18 +58,41 @@
     </div>
   <% } %>
 
-  <!-- Navbar -->
   <nav class="bg-gray-900 text-white p-4 shadow-md">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
       <a href="/" class="text-2xl font-bold text-indigo-400">UniqueBlog</a>
-      <div class="flex space-x-4 mt-2 md:mt-0">
-        <a href="/signin" class="hover:text-indigo-300 text-sm md:text-base">Login</a>
-        <a href="/signup" class="hover:text-indigo-300 text-sm md:text-base">Signup</a>
+  
+      <!-- Desktop Menu -->
+      <div class="flex space-x-4 mt-2 md:mt-0 hidden md:flex">
         <% if (locals.user) { %>
+          <a href="/community" class="hover:text-indigo-300 text-sm md:text-base">Unique Community</a>
           <a href="/post" class="hover:text-indigo-300 text-sm md:text-base">Add Post</a>
           <a href="/profile" class="hover:text-indigo-300 text-sm md:text-base">Profile</a>
+
+        <% } else { %>
+          <a href="/signin" class="hover:text-indigo-300 text-sm md:text-base">Login</a>
+          <a href="/signup" class="hover:text-indigo-300 text-sm md:text-base">Signup</a>
         <% } %>
       </div>
+      
+  
+      <!-- Mobile Menu Button (Hamburger Icon) -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-white focus:outline-none">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu" class="md:hidden hidden bg-gray-900 text-white p-4">
+      <a href="/signin" class="block py-2 text-sm md:text-base hover:text-indigo-300">Login</a>
+      <a href="/signup" class="block py-2 text-sm md:text-base hover:text-indigo-300">Signup</a>
+      <% if (locals.user) { %>
+        <a href="/profile" class="block py-2 text-sm md:text-base hover:text-indigo-300">Unique Community</a>
+        <a href="/post" class="block py-2 text-sm md:text-base hover:text-indigo-300">Add Post</a>
+        <a href="/community" class="block py-2 text-sm md:text-base hover:text-indigo-300">Profile</a>
+      <% } %>
     </div>
   </nav>
 
@@ -83,7 +108,6 @@
       Get Started
     </a>
   </section>
-
   <!-- Blog Cards -->
   <section class="max-w-6xl mx-auto px-4 py-10">
     <h2 class="text-3xl font-bold text-indigo-300 mb-10 text-center">Latest Blog Posts</h2>
@@ -106,17 +130,81 @@
     </div>
   </section>
 
+  <!-- Why Choose UniqueBlog Section -->
+  <section class="max-w-5xl mx-auto px-4 py-14" id="why-us">
+    <h2 class="text-3xl font-bold text-center text-indigo-300 mb-10">Why Choose UniqueBlog?</h2>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8 text-center">
+      <div class="bg-gradient-to-br from-indigo-700 to-purple-700 p-6 rounded-xl shadow-lg text-white hover:scale-105 transform transition">
+        <i class="fas fa-pen-nib text-3xl text-white mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">Creative Freedom</h3>
+        <p class="text-sm opacity-90">Write anything, anytime, with full control over your content.</p>
+      </div>
+        <div class="bg-gradient-to-br from-teal-600 to-cyan-600 p-6 rounded-xl shadow-lg text-white hover:scale-105  transform transition">
+          <i class="fas fa-users text-3xl text-white mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Community Driven</h3>
+          <p class="text-sm opacity-90">Join a vibrant space of creators and inspire like-minded readers.</p>
+        </div>
+   
+      
+      <div class="bg-gradient-to-br from-rose-500 to-pink-600 p-6 rounded-xl shadow-lg text-white hover:scale-105 transform transition">
+        <i class="fas fa-bolt text-3xl text-white mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">Fast & Secure</h3>
+        <p class="text-sm opacity-90">Optimized speed and robust privacy for all your posts and data.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Signup -->
+  <section class="relative py-20 px-6 sm:px-10 bg-black overflow-hidden">
+    <div class="absolute inset-0 opacity-20 blur-3xl pointer-events-none" style="background: radial-gradient(circle at top left, #6366f1, #ec4899);"></div>
+
+    <div class="max-w-3xl mx-auto text-center relative z-10 bg-white/5 border border-white/10 rounded-2xl p-10 backdrop-blur-md shadow-2xl shadow-indigo-500/20">
+      <h2 class="text-4xl font-extrabold text-indigo-300 mb-4">Stay in the Loop</h2>
+      <p class="text-gray-300 mb-8 max-w-lg mx-auto">
+        Subscribe to our newsletter and never miss an update from <span class="text-indigo-400 font-semibold">UniqueBlog</span>.
+      </p>
+
+      <form class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <input 
+          type="email" 
+          placeholder="Enter your email" 
+          class="px-5 py-3 rounded-full w-full sm:w-auto text-sm sm:text-base text-black focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-200" 
+          required 
+        />
+        <button 
+          type="submit" 
+          class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-6 py-3 rounded-full shadow-md hover:shadow-indigo-600/50 transition duration-300"
+        >
+          Subscribe
+        </button>
+      </form>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="bg-gray-900 text-white text-center p-4 border-t border-gray-700">
     <p class="text-sm">&copy; 2025 UniqueBlog. All rights reserved.</p>
   </footer>
 
+  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script>
+    gsap.registerPlugin(ScrollTrigger);
+
     setTimeout(() => {
       const loader = document.getElementById("loader");
       loader.style.top = "-100%";
     }, 3700);
+
+    // Mobile Menu Toggle Functionality
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');  // This will toggle the visibility of the mobile menu
+    });
 
     document.addEventListener("DOMContentLoaded", () => {
       const heading = document.getElementById("hero-heading");
@@ -149,6 +237,47 @@
           each: 0.05,
           from: "start"
         }
+      });
+
+      gsap.from(".feature", {
+        opacity: 0,
+        y: 80,
+        duration: 1,
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: "#why-us",
+          start: "top 80%",
+        }
+      });
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuBtn = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      let isOpen = false;
+
+      // Set initial state
+      gsap.set(mobileMenu, { height: 0, opacity: 0, display: "none" });
+
+      menuBtn.addEventListener("click", () => {
+        if (!isOpen) {
+          gsap.set(mobileMenu, { display: "block" });
+          gsap.to(mobileMenu, {
+            height: "auto",
+            opacity: 1,
+            duration: 0.4,
+            ease: "power2.out"
+          });
+        } else {
+          gsap.to(mobileMenu, {
+            height: 0,
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.inOut",
+            onComplete: () => gsap.set(mobileMenu, { display: "none" })
+          });
+        }
+        isOpen = !isOpen;
       });
     });
   </script>

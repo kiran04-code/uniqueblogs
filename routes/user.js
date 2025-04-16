@@ -3,6 +3,7 @@ const routes = express.Router()
 const user = require("../model/user")
 const post = require("../model/post")
 const com = require("../model/comment")
+const commun = require("../model/community")
 // const multer  = require("multer")
 // const path = require("path")
 
@@ -100,5 +101,20 @@ routes.post("/create",async(req,res)=>{
     
     })
     res.redirect("/")
+})
+/// communitys///
+routes.get("/community",async(req,res)=>{
+  const communs = await commun.find({}).populate('createdBy')
+  res.render("community",{community:communs}) // Populate 'name' field from user
+ 
+})
+routes.post("/text",async(req,res)=>{
+  const body  = req.body
+  const texts = await commun.create({
+    text:body.text,
+    createdBy:req.user._id
+  })
+  console.log(texts)
+  res.redirect("/community")
 })
 module.exports = routes

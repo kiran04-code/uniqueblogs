@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community | UniqueBlog</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fade-in {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fade-in 0.6s ease-in-out;
+    }
+    /* Scrollbar styling */
+    .chat-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .chat-scroll::-webkit-scrollbar-thumb {
+      background-color: rgba(100, 116, 139, 0.5);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="bg-black text-white font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-gray-900 p-4 shadow-md">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold text-indigo-400">UniqueBlog</a>
+      <a href="/profile" class="hover:text-indigo-300 text-sm md:text-base">Profile</a>
+    </div>
+  </nav>
+
+  <!-- Community Header -->
+  <header class="text-center py-10 px-4">
+    <h1 class="text-4xl font-bold text-indigo-300 mb-2">Community Chat</h1>
+    <p class="text-gray-400 text-sm">Chat with fellow bloggers, share thoughts, ask questions.</p>
+  </header>
+
+  <!-- Chat Section -->
+  <section class="max-w-3xl mx-auto px-4">
+    <div class="bg-gray-800/80 rounded-2xl h-[600px] shadow-2xl border border-gray-700 backdrop-blur-md flex flex-col overflow-hidden">
+
+      <!-- Chat Messages -->
+      <div class="flex-1 p-6 overflow-y-auto space-y-6 chat-scroll">
+        <% if (Array.isArray(community)) { %>
+          <% community.forEach(element => { %>
+            <div class="flex items-start space-x-3 animate-fade-in">
+              <div>
+                <div class="flex items-center space-x-2 mb-1">
+                  <h4 class="text-sm font-semibold text-indigo-300">
+                    <%= element.createdBy ? element.createdBy.username : "Anonymous" %>
+                  </h4>
+                  <span class="text-xs text-gray-500">
+                    <%= new Date(element.createdAt).toLocaleString() %>
+                  </span>
+                </div>
+                <div class="bg-indigo-600/90 text-white rounded-2xl px-4 py-3 max-w-md shadow-md">
+                  <p class="text-sm"><%= element.text %></p>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <p class="text-gray-500 text-sm">No messages yet. Start the conversation!</p>
+        <% } %>
+      </div>
+
+      <!-- Input Box -->
+      <form class="p-4 border-t border-gray-700 flex items-center gap-3 bg-gray-900" method="POST" action="/text">
+        <input 
+          type="text" 
+          name="text" 
+          placeholder="Type your message..."
+          class="flex-1 px-4 py-3 rounded-full text-black focus:outline-none focus:ring-2 focus:ring-indigo-500" 
+          required
+        />
+        <button 
+          type="submit" 
+          class="bg-indigo-500 hover:bg-indigo-600 px-5 py-3 rounded-full text-white transition-all"
+        >
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mt-16 bg-gray-900 py-6 text-center text-sm text-gray-500">
+    <p>&copy; 2025 UniqueBlog. Crafted with ❤️ by creators, for creators.</p>
+  </footer>
+
+</body>
+</html>
