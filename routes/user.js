@@ -25,12 +25,11 @@ routes.get("/seecommets/:id",async(req,res)=>{
 routes.post("/signup", async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    const newuser = await user.create({
+     await user.create({
       username,
       email,
       password
     });
-    console.log(newuser);
     res.render("signin"); // <<== This renders, not redirects!
   } catch (error) {
     res.render("signup", { error: "Email Is Not Unique!" });
@@ -83,6 +82,11 @@ routes.get("/delete/:id",async(req,res)=>{
     const userId = req.params.id
     await post.findByIdAndDelete(userId )
     res.redirect("/blogs")
+})
+routes.get("/deletecomment/:id",async(req,res)=>{
+ const userid = req.params.id
+ await com.findByIdAndDelete(userid )
+ res.render("commets")
 })
 routes.get("/post",(req,res)=>{
   res.render("post")
