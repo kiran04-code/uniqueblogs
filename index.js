@@ -15,7 +15,6 @@ app.set("view engine",'ejs')
 app.set("views",path.resolve("./views"))
 app.use(cookieparser())
 app.use(checkAuth("token"))
-app.use(express.static(path.resolve('/public')))
 const port =  process.env.PORT || 8008
 MongoDB(process.env.MONGO_URI)
   .then(() => {
