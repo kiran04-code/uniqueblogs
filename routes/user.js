@@ -160,5 +160,33 @@ routes.get("/allcoments", async (req, res) => {
 
   return res.render("allcoments", { comtz: comts });
 });
-
+routes.get("/deletcomadmin/:id",async(req,res)=>{
+  const userId = req.params.id
+  await com.findByIdAndDelete(userId)
+  res.redirect("/allcoments")
+  
+})
+routes.get("/edituserByadmin/:id",async(req,res)=>{
+  const userid = req.params.id
+  const users = await user.findById(userid);
+  return res.render("adminedituser",{userz:users})
+})
+routes.post("/updateuser/:id",async(req,res)=>{
+  const userid = req.params.id
+  const {username,email} = req.body
+  await user.findOneAndUpdate({_id:userid},{username:username,email:email})
+  res.redirect("/alluser")
+})
+// admin login user
+routes.get("/adminlogin",(req,res)=>{
+  res.render("adminlogin")
+})
+routes.post("/admin/login",(req,res)=>{
+  const {email,password} = req.body
+  if(email=="kr551344@gmail.com" && password=="kiran"){
+    res.redirect("/admin")
+  }else{
+    res.redirect("/singin")
+  }
+})
 module.exports = routes

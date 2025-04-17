@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login | UniqueBlog</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen p-4">
+  <div class="bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-md animate-fade-in">
+    <div class="text-center mb-6">
+      <div class="text-indigo-400 text-5xl mb-2">
+        <i class="fas fa-user-shield"></i>
+      </div>
+      <h2 class="text-3xl font-bold text-indigo-400">Welcome Admin</h2>
+      <p class="text-gray-400 text-sm mt-1">You are logging into the UniqueBlog Admin Panel</p>
+    </div>
+    <form action="/admin/login" method="POST" class="space-y-4">
+      <div>
+        <label for="email" class="block text-sm mb-1 text-gray-300">Email</label>
+        <input type="email" id="email" name="email" placeholder="admin@example.com" required class="w-full px-4 py-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-indigo-500">
+      </div>
+      <div>
+        <label for="password" class="block text-sm mb-1 text-gray-300">Password</label>
+        <input type="password" id="password" name="password" placeholder="********" required class="w-full px-4 py-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-indigo-500">
+      </div>
+      <button type="submit" class="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 rounded transition">Login</button>
+    </form>
+
+    <div class="text-center text-xs text-gray-500 mt-6">
+      <p>UniqueBlog Admin Portal &copy; <%= new Date().getFullYear() %></p>
+    </div>
+  </div>
+
+  <style>
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-in {
+      animation: fade-in 0.6s ease-out forwards;
+    }
+  </style>
+</body>
+</html>
