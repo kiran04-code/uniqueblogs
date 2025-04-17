@@ -17,6 +17,15 @@
       width: 0px;
       background: transparent;
     }
+    /* Optional - for Tailwind hidden scrollbars */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(129, 140, 248, 0.4); /* soft indigo */
+  border-radius: 4px;
+}
+
   </style>
 </head>
 
@@ -101,9 +110,7 @@
                   <span class="truncate"><i class="fas fa-user-plus text-indigo-400 mr-2"></i><%=element.username  %> joined</span>
                   <span class="text-gray-400">2 mins ago</span>
                 </li>
-                
                <% }) %>
-                
               </ul>
             </section>
 
@@ -116,7 +123,6 @@
                   <span class="truncate"><i class="fas fa-comment text-indigo-400 mr-2"></i> <%=element.coments  %></span>
                   <span class="text-gray-400">30 mins ago</span>
                 </li>
-                
                <% }) %> 
               </ul>
             </section>
@@ -130,7 +136,6 @@
                     <span class="truncate"><i class="fas fa-edit text-indigo-400 mr-2"></i> <%= element.title %>  updated</span>
                     <span class="text-gray-400">3 hours ago</span>
                   </li>
-                  
                  <% }) %>
               </ul>
             </section>
@@ -140,18 +145,74 @@
           <section class="bg-gray-800 rounded-2xl p-6 shadow-lg lg:w-1/3 w-full">
             <h4 class="text-2xl font-semibold text-indigo-300 mb-4">Quick Actions</h4>
             <div class="space-y-4">
+             
+              <a href="/Announcement">
+                <button class="w-full bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-full text-white flex items-center justify-center space-x-2">
+                  <i class="fas fa-plus"></i><span>Write Announcement</span>
+                </button>
+              </a>
               <button class="w-full bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-full text-white flex items-center justify-center space-x-2">
-                <i class="fas fa-plus"></i><span>Add New Post</span>
+                <i class="fas fa-user-plus"></i><span>Send Messages to user</span>
               </button>
               <button class="w-full bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-full text-white flex items-center justify-center space-x-2">
-                <i class="fas fa-user-plus"></i><span>Add User</span>
-              </button>
-              <button class="w-full bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-full text-white flex items-center justify-center space-x-2">
-                <i class="fas fa-cogs"></i><span>Manage Settings</span>
+                <i class="fa-solid fa-envelope" style="color: #ffffff;"></i><span> Send mails to All Users</span>
               </button>
             </div>
           </section>
         </div>
+
+       <!-- Newsletter Summary Section -->
+<section class="bg-gray-900 rounded-2xl p-6 shadow-lg mt-10">
+  <h4 class="text-2xl font-semibold text-indigo-300 mb-4">Newsletter Summary</h4>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Subscribers -->
+    <div class="bg-gray-800 p-4 rounded-xl shadow hover:shadow-indigo-500/20 transition duration-200 h-42">
+      <div class="flex items-center justify-between h-full">
+        <div>
+          <p class="text-sm text-gray-400">Subscribers</p>
+          <h3 class="text-2xl font-bold text-indigo-400">1,204</h3>
+        </div>
+        <i class="fas fa-envelope-open-text text-indigo-300 text-2xl"></i>
+      </div>
+    </div>
+
+    <!-- Open Rate -->
+    <div class="bg-gray-800 p-4 rounded-xl shadow hover:shadow-indigo-500/20 transition duration-200 h-42">
+      <div class="flex items-center justify-between h-full">
+        <div>
+          <p class="text-sm text-gray-400">Open Rate</p>
+          <h3 class="text-2xl font-bold text-green-400">42%</h3>
+        </div>
+        <i class="fas fa-chart-line text-green-300 text-2xl"></i>
+      </div>
+    </div>
+
+    <!-- Top Posts This Week -->
+    <div class="bg-gray-800 p-4 rounded-xl shadow hover:shadow-indigo-500/20 transition duration-200 h-42">
+      <div class="flex items-center justify-between mb-2">
+        <div>
+          <h3 class="text-base font-semibold text-indigo-200">Announcement</h3>
+       
+        </div>
+        <i class="fas fa-bullhorn text-yellow-300 text-2xl"></i>
+      </div>
+      <!-- Scrollable post list -->
+      <div class="overflow-y-auto max-h-20 space-y-1 pr-1 custom-scrollbar">
+     <% Announcement.forEach(element => { %>
+      <div class="flex items-center justify-between text-sm text-indigo-300">
+        <span><%= element.title %></span>
+      <a href="/deleteAnnouncement/<%= element._id %>">
+          <button type="submit" class="text-red-500 hover:text-red-600 font-semibold">
+            <i class="fas fa-trash-alt mr-1"></i> Delete
+          </button>
+        </a>
+      </div> 
+     <% }) %>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       </div>
     </div>

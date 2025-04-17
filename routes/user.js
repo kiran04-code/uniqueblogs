@@ -4,6 +4,7 @@ const user = require("../model/user")
 const post = require("../model/post")
 const com = require("../model/comment")
 const commun = require("../model/community")
+const annu = require("../model/annous")
 const { render } = require("ejs")
 // const multer  = require("multer")
 // const path = require("path")
@@ -126,7 +127,8 @@ routes.get("/admin",async(req,res)=>{
  const users =  await user.find({})
  const posts = await post.find({})
  const comts= await com.find({})
-  return res.render("admin",{userz:users,postz:posts,comz:comts})
+ const annous = await annu.find({})
+  return res.render("admin",{userz:users,postz:posts,comz:comts,Announcement:annous})
 
 })
 // for user 
@@ -188,5 +190,26 @@ routes.post("/admin/login",(req,res)=>{
   }else{
     res.redirect("/singin")
   }
+})
+// aounounce ment 
+routes.get("/Announcement",(req,res)=>{
+  res.render("Announcement")
+})
+routes.post("/send-announcement",async(req,res)=>{
+  const {title ,content} = req.body
+ const resu =  await annu.create({
+    title:title,
+    content:content
+  })
+  res.redirect("/Announcement")
+})
+routes.get("/allannounce",async(req,res)=>{
+  const annous = await annu.find({})
+  res.render("allannounce",{Announcement:annous})
+})
+routes.get("/deleteAnnouncement/:id",async (req,res)=>{
+  const userid = req.params.id
+  await annu.findByIdAndDelete(userid)
+  res.redirect("/admin")
 })
 module.exports = routes

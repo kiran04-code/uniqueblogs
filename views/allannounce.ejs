@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Announcements | UniqueBlog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to bottom right, #0e0e10, #1a1a1e);
+    }
+  </style>
+</head>
+<body class="text-white min-h-screen flex flex-col justify-between">
+
+  <!-- Main Content -->
+  <main class="flex-grow p-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-indigo-300 mb-10 flex items-center gap-3">
+        <i class="fas fa-bullhorn text-yellow-400 animate-pulse"></i> Announcements
+      </h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Dummy Cards (same as before) -->
+      <% Announcement.forEach(element => { %>
+        <div class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-indigo-500/30 transition duration-300">
+            <h3 class="text-lg font-bold text-indigo-300 mb-2 flex items-center gap-2">
+              <i class="fas fa-megaphone text-pink-400"></i><%= element.title %>
+            </h3>
+            <p class="text-sm text-gray-300 mb-4"><%= element.content %></p>
+            <div class="flex justify-between items-center text-xs text-gray-500">
+              <span><i class="fas fa-clock mr-1"></i><%= new Date(element.createdAt).toLocaleDateString() %></span>
+              <span class="bg-yellow-500 text-black px-2 py-0.5 rounded-full text-[11px] font-semibold">UniqueBlog</span>
+            </div>
+          </div>
+      <% }) %>
+
+        <!-- Add more cards similarly... -->
+        <!-- You can keep the others same as the earlier code -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Global Footer Announcement -->
+  <footer class="bg-gray-900 border-t border-gray-800 mt-10">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 py-4 gap-3 text-sm">
+      <div class="flex items-center gap-3 text-indigo-300">
+        <i class="fas fa-bullhorn text-yellow-400 text-lg"></i>
+        <p class="font-medium">📢 Latest Community Update:</p>
+        <span class="text-gray-300">"We’re rolling out new features next week!"</span>
+      </div>
+      <a href="/create-announcement" class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-semibold transition shadow">
+        + contact to admin
+      </a>
+    </div>
+    <div class="text-center text-gray-500 text-xs py-2">
+      © <span id="year"></span> UniqueBlog — All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
