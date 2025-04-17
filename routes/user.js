@@ -197,7 +197,7 @@ routes.get("/Announcement",(req,res)=>{
 })
 routes.post("/send-announcement",async(req,res)=>{
   const {title ,content} = req.body
- const resu =  await annu.create({
+  await annu.create({
     title:title,
     content:content
   })
