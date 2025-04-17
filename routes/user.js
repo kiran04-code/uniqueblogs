@@ -4,6 +4,7 @@ const user = require("../model/user")
 const post = require("../model/post")
 const com = require("../model/comment")
 const commun = require("../model/community")
+const { render } = require("ejs")
 // const multer  = require("multer")
 // const path = require("path")
 
@@ -120,4 +121,44 @@ routes.post("/text",async(req,res)=>{
   console.log(texts)
   res.redirect("/community")
 })
+//======================================== for admin panel =================================================================
+routes.get("/admin",async(req,res)=>{
+ const users =  await user.find({})
+ const posts = await post.find({})
+ const comts= await com.find({})
+  return res.render("admin",{userz:users,postz:posts,comz:comts})
+
+})
+// for user 
+routes.get("/alluser",async(req,res)=>{
+  const users =  await user.find({})
+  return res.render("alluser",{userz:users})
+})
+
+routes.get("/deletbyadmin/:id",async(req,res)=>{
+  const userId = req.params.id
+  await user.findByIdAndDelete(userId)
+  res.redirect("/alluser")
+  
+})
+// for posts
+routes.get("/allpost",async(req,res)=>{
+  const posts =  await post.find({}).populate('createdBy')
+  return res.render("allpost",{postz:posts})
+})
+routes.get("/deletpostadmin/:id",async(req,res)=>{
+  const userId = req.params.id
+  await post.findByIdAndDelete(userId)
+  res.redirect("/allpost")
+  
+})
+// for all coments
+routes.get("/allcoments", async (req, res) => {
+  const comts = await com.find({})
+    .populate('blogId', 'title')  // Assuming blogId references a Blog model and we only need the title
+    .populate('createdBy', 'username'); // Assuming createdBy references a User model and we only need the username
+
+  return res.render("allcoments", { comtz: comts });
+});
+
 module.exports = routes
