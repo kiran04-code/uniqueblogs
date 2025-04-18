@@ -7,60 +7,59 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      background: black;
+      background-color: #111827; /* Darker background for modern feel */
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-<body class="text-white font-sans min-h-screen flex flex-col">
+<body class="text-zinc-200 font-sans min-h-screen flex flex-col">
 
   <!-- Navbar -->
-  <nav class="bg-gray-950 p-4 shadow-lg">
-    <div class="w-full flex justify-between items-center px-4 md:px-10">
+  <nav class="bg-zinc-800 p-6 shadow-md">
+    <div class="w-full flex justify-between items-center max-w-7xl mx-auto">
       <a href="/">
         <h1 class="text-xl font-bold text-indigo-400 flex items-center gap-2">
-          <i class="fas fa-shield-alt text-blue-400"></i>  UniqueBlog
+          <i class="fas fa-shield-alt text-blue-400"></i> UniqueBlog
         </h1>
-      </a>
-      
-      <a href="/" class="text-sm md:text-base text-gray-300 hover:text-indigo-300">Back to Blogs</a>
+      <a href="/" class="text-sm text-zinc-300 hover:text-zinc-100">Back to Blogs</a>
     </div>
   </nav>
 
-  <!-- Blog Content Fullscreen -->
-  <main class="flex-grow w-full bg-gradient-to-br from-indigo-700 to-purple-700 px-4 sm:px-10 py-10 space-y-10">
+  <!-- Blog Content -->
+  <main class="flex-grow w-full px-6 sm:px-10 py-10 space-y-10 max-w-7xl mx-auto">
 
     <!-- Title -->
-    <h1 class="text-4xl sm:text-5xl font-extrabold text-white"><%= blog.title %></h1>
+    <h1 class="text-4xl sm:text-5xl font-extrabold text-zinc-100"><%= blog.title %></h1>
 
     <!-- Meta -->
-    <div class="flex flex-col sm:flex-row justify-between text-sm text-gray-300">
-      <p>✍️ Published by <span class="text-white font-semibold"><%= blog.createdBy.username %></span></p>
+    <div class="flex flex-col sm:flex-row justify-between text-sm text-zinc-400 mt-2">
+      <p>✍️ Published by <span class="text-zinc-100 font-semibold"><%= blog.createdBy.username %></span></p>
       <p>📅 <%= new Date(blog.createdAt).toLocaleDateString() %></p>
     </div>
 
     <!-- Content -->
-    <div class="text-white/90 text-base sm:text-lg leading-relaxed">
+    <div class="text-zinc-100 text-base sm:text-lg leading-relaxed mt-6">
       <%= blog.content %>
     </div>
 
     <!-- Comment Form -->
     <% if (locals.user) { %>
-      <div class="bg-white/10 p-6 sm:p-8 rounded-lg shadow-lg w-full">
-        <h2 class="text-xl font-semibold mb-4">Leave a Comment</h2>
+      <div class="bg-zinc-700/30 backdrop-blur p-6 sm:p-8 rounded-lg shadow-lg w-full mt-10">
+        <h2 class="text-xl font-semibold text-zinc-100 mb-4">Leave a Comment</h2>
         <form action="/readmore/coments/<%=blog._id %>" method="post" class="space-y-4">
           <div>
-            <label for="comment" class="block text-sm font-medium text-gray-300 mb-1">Your Comment</label>
+            <label for="comment" class="block text-sm font-medium text-zinc-400 mb-1">Your Comment</label>
             <input
               type="text"
               id="comment"
               name="coments"
               required
-              placeholder="Write something kind..."
-              class="w-full p-3 rounded-md bg-white/10 text-white placeholder-gray-400 border border-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Write something thoughtful..."
+              class="w-full p-3 rounded-md bg-zinc-700 text-zinc-100 placeholder-zinc-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-500"
             />
           </div>
           <button type="submit"
-            class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium px-6 py-2 rounded-lg shadow-md transition duration-200">
+            class="bg-zinc-500 hover:bg-zinc-600 text-white font-medium px-6 py-2 rounded-lg shadow-md transition duration-200">
             📨 Submit Comment
           </button>
         </form>
@@ -68,29 +67,30 @@
     <% } %>
 
     <!-- Comments Section -->
-    <div class="space-y-4">
-      <h3 class="text-xl font-semibold mb-2">🗨️ Comments</h3>
+    <div class="space-y-4 mt-10">
+      <h3 class="text-xl font-semibold text-zinc-100 mb-2">🗨️ Comments</h3>
 
       <% if (locals.coments && coments.length > 0) { %>
         <% coments.forEach(element => { %>
-          <div class="bg-white/10 p-4 rounded-lg">
-            <p class="text-sm text-gray-300 mb-1">
-              <strong class="text-white"><%= element.createdBy.username %></strong><%= new Date(element.createdAt).toLocaleString() %>
+          <div class="bg-zinc-700/30 border border-zinc-600 p-4 rounded-lg">
+            <p class="text-sm text-zinc-400 mb-1">
+              <strong class="text-zinc-100"><%= element.createdBy.username %></strong> — <%= new Date(element.createdAt).toLocaleString() %>
             </p>
-            <p class="text-white break-words"><%= element.coments.trim() %></p>
+            <p class="text-zinc-100 break-words"><%= element.coments.trim() %></p>
           </div>
         <% }) %>
       <% } else { %>
-        <p class="text-gray-400 italic">No comments yet. Be the first to share your thoughts!</p>
+        <p class="text-zinc-400 italic">No comments yet. Be the first to share your thoughts!</p>
       <% } %>
     </div>
 
   </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-950 text-white text-center p-4 border-t border-gray-800">
-    <p class="text-sm text-gray-400">&copy; 2025 UniqueBlog. All rights reserved.</p>
+  <footer class="bg-zinc-800 text-center p-6 border-t border-zinc-700">
+    <p class="text-sm text-zinc-500">&copy; 2025 UniqueBlog. All rights reserved.</p>
   </footer>
 
 </body>
 </html>
+
