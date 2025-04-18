@@ -5,6 +5,7 @@ const post = require("../model/post")
 const com = require("../model/comment")
 const commun = require("../model/community")
 const annu = require("../model/annous")
+const metoadminn = require("../model/sedntoadmin")
 const { render } = require("ejs")
 // const multer  = require("multer")
 // const path = require("path")
@@ -128,7 +129,8 @@ routes.get("/admin",async(req,res)=>{
  const posts = await post.find({})
  const comts= await com.find({})
  const annous = await annu.find({})
-  return res.render("admin",{userz:users,postz:posts,comz:comts,Announcement:annous})
+ const allmess = await metoadminn.find({})
+  return res.render("admin",{userz:users,postz:posts,comz:comts,Announcement:annous,allmesseage:allmess})
 
 })
 // for user 
@@ -211,5 +213,23 @@ routes.get("/deleteAnnouncement/:id",async (req,res)=>{
   const userid = req.params.id
   await annu.findByIdAndDelete(userid)
   res.redirect("/admin")
+})
+// send messege 
+routes.get("/sendadmin",(req,res)=>{
+  res.render("sendadmin")
+})
+routes.post("/send-message-admin",async(req,res)=>{
+  const { name ,email,message} = req.body
+  const data  =  await metoadminn.create({
+    name,
+    email,
+    message
+  })
+ 
+  res.render("sendadmin",{error:" ✅ Message Sent! Thanks for reaching out to the UniqueBlog team — we’ll get back to you shortly"})
+})
+routes.get("/alladminmessage",async(req,res)=>{
+  const allmess = await metoadminn.find({})
+  res.render("alladminmessage",{allm:allmess})
 })
 module.exports = routes
