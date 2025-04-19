@@ -52,10 +52,12 @@
                 <td class="p-3"><%= element.message %></td>
                 <td class="p-3"><%= new Date(element.createdAt).toLocaleString() %></td>
                 <td class="p-3">
-                  <a href="/emailtouser/<%= element._id %>" 
-                    class="bg-indigo-500 hover:bg-indigo-600 text-white px-3 py-1 rounded-full text-xs shadow transition">
-                    <i class="fas fa-reply mr-1"></i>Send Response
-                  </a>
+                  <a href="/emailtouser/<%= element._id %>"
+                    class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-full text-sm shadow transition flex items-center justify-center gap-2 w-full sm:w-auto mb-2 sm:mb-0">
+                    <i class="fas fa-reply"></i>
+                    <span>Send Response</span>
+                 </a>
+                 
                 </td>
               </tr>
             <% }) %>
