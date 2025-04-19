@@ -26,7 +26,7 @@
           <label for="email" class="block text-sm text-gray-400 mb-1">Select User</label>
           <select name="email" id="email" class="w-full p-2 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
              <% userz.forEach(element => { %>
-                <option value="alice@example.com"><%= element.email %></option>
+                <option value="<%= element.email %>"><%= element.email %></option>
            
              <% }) %>
           </select>

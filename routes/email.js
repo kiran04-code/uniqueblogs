@@ -17,7 +17,7 @@ router.post("/send-email/:id",async(req,res)=>{
         secure: true,
         auth: {
           user: 'uniqueblogcom@gmail.com',
-          pass: 'ruvn zkew rktw qvpb'
+          pass: process.env.Email_Api_key
         }
       })
   
