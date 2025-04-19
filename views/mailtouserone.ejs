@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Send Email to User | Admin Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="bg-black text-white font-sans min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-gray-900 p-6 shadow-md flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-indigo-400"><i class="fas fa-paper-plane mr-2"></i>Send Email to User</h1>
+    <a href="/admin" class="text-indigo-300 hover:text-white transition text-sm"><i class="fas fa-arrow-left mr-1"></i>Back to Dashboard</a>
+  </header>
+
+  <!-- Form Section -->
+  <main class="flex-1 p-6 flex justify-center items-center">
+    <div class="bg-gray-900 rounded-xl p-6 shadow-lg w-full max-w-xl">
+      <h2 class="text-lg font-semibold text-indigo-300 mb-4">Email Form</h2>
+      <form action="/sendemailtoone" method="post" class="space-y-4">
+        
+        <!-- User Dropdown -->
+        <div>
+          <label for="email" class="block text-sm text-gray-400 mb-1">Select User</label>
+          <select name="email" id="email" class="w-full p-2 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+             <% userz.forEach(element => { %>
+                <option value="alice@example.com"><%= element.email %></option>
+           
+             <% }) %>
+          </select>
+        </div>
+
+        <!-- Subject -->
+        <div>
+          <label for="subject" class="block text-sm text-gray-400 mb-1">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="Enter subject" required
+            class="w-full p-2 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+        </div>
+
+        <!-- Message -->
+        <div>
+          <label for="message" class="block text-sm text-gray-400 mb-1">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Type your message..." required
+            class="w-full p-2 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center">
+          <button type="submit"
+            class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-6 py-2 rounded-full shadow transition duration-300">
+            <i class="fas fa-paper-plane mr-2"></i>Send Email
+          </button>
+        </div>
+        <div class="text-center my-6">
+            <a href="/admin" class="inline-block bg-gray-800 hover:bg-gray-700 text-white px-6 py-2 rounded-full transition duration-300 shadow-md">
+              <i class="fas fa-home mr-2"></i>Back to Admin panel
+            </a>
+          </div>
+
+          <% if (success) { %>
+            <div id="alertMessage" class="text-center mt-4 px-4">
+              <p id="alertText"
+                class="bg-green-700 text-white inline-block px-4 py-2 rounded-full shadow text-xs sm:text-sm max-w-full sm:max-w-md w-full sm:w-auto transition duration-300">
+                <%= success %>
+              </p>
+            </div>
+          <% } %>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 text-sm px-6 py-4 text-center rounded-t-2xl shadow-inner mt-10">
+    <p>&copy; 2025 UniqueBlog Admin Panel. All rights reserved.</p>
+  </footer>
+</body>
+</html>

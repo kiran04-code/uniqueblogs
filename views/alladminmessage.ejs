@@ -40,20 +40,25 @@
               <th class="p-3">Email</th>
               <th class="p-3">Message</th>
               <th class="p-3">Date</th>
+              <th class="p-3">Action</th>
             </tr>
           </thead>
           <tbody class="text-white divide-y divide-gray-700">
-            <!-- Dummy Data -->
-           <% allm.forEach(element => { %>
-            <tr>
-                <td class="p-3">1</td>
+            <% allm.forEach((element, index) => { %>
+              <tr>
+                <td class="p-3"><%= index + 1 %></td>
                 <td class="p-3"><%= element.name %></td>
                 <td class="p-3"><%= element.email %></td>
                 <td class="p-3"><%= element.message %></td>
-                <td class="p-3"><%=new Date(element.createdAt).toLocaleString()  %> </td>
+                <td class="p-3"><%= new Date(element.createdAt).toLocaleString() %></td>
+                <td class="p-3">
+                  <a href="/emailtouser/<%= element._id %>" 
+                    class="bg-indigo-500 hover:bg-indigo-600 text-white px-3 py-1 rounded-full text-xs shadow transition">
+                    <i class="fas fa-reply mr-1"></i>Send Response
+                  </a>
+                </td>
               </tr>
-           <% }) %>
-           
+            <% }) %>
           </tbody>
         </table>
       </div>

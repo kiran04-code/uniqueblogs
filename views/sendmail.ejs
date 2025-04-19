@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Send Email to User | Admin Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-black text-white min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="bg-[#0f172a] shadow p-6 text-center">
+    <h1 class="text-3xl font-bold text-indigo-400 flex items-center justify-center gap-2">
+      <i class="fas fa-paper-plane"></i>
+      Send Email to User
+    </h1>
+    <p class="text-gray-400 text-sm mt-2">Send a direct email from admin panel to any user</p>
+  </header>
+
+  <!-- Form Section -->
+  <main class="flex-grow flex items-center justify-center p-6">
+    <div class="bg-[#0f172a] p-8 rounded-2xl shadow-xl w-full max-w-xl border border-gray-700">
+      <form action="/send-email/<%=allmessage._id  %>" method="post" class="space-y-6">
+
+        <div>
+          <label for="email" class="block text-indigo-300 font-semibold mb-1">User Email</label>
+          <input type="email" id="email" name="email" required value="<%= allmessage.email %>"
+            class="w-full px-4 py-2 rounded-xl bg-gray-900 text-white border border-gray-700 focus:ring-2 focus:ring-indigo-500 outline-none transition" />
+        </div>
+
+        <div>
+          <label for="subject" class="block text-indigo-300 font-semibold mb-1">Subject</label>
+          <input type="text" id="subject" name="subject" required value="<%= allmessage.message %>"
+            class="w-full px-4 py-2 rounded-xl bg-gray-900 text-white border border-gray-700 focus:ring-2 focus:ring-indigo-500 outline-none transition" />
+        </div>
+
+        <div>
+          <label for="message" class="block text-indigo-300 font-semibold mb-1">Message</label>
+          <textarea id="message" name="message" rows="6" required
+            class="w-full px-4 py-2 rounded-xl bg-gray-900 text-white border border-gray-700 focus:ring-2 focus:ring-indigo-500 outline-none resize-none transition"></textarea>
+        </div>
+
+        <div class="flex justify-end">
+          <button type="submit"
+            class="bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-2 rounded-full shadow-md transition flex items-center gap-2">
+            <i class="fas fa-paper-plane"></i> Send Email
+          </button>
+        </div>
+      </form>
+      <% if (success) { %>
+        <div id="alertMessage" class="text-center mt-4 px-4">
+          <p id="alertText"
+            class="bg-green-700 text-white inline-block px-4 py-2 rounded-full shadow text-xs sm:text-sm max-w-full sm:max-w-md w-full sm:w-auto transition duration-300">
+            <%= success %>
+          </p>
+        </div>
+      <% } %>
+      
+    </div>
+  </main>
+  <div class="text-center my-6">
+    <a href="/admin" class="inline-block bg-gray-800 hover:bg-gray-700 text-white px-6 py-2 rounded-full transition duration-300 shadow-md">
+      <i class="fas fa-home mr-2"></i>Back to Admin panel
+    </a>
+  </div>
+  <!-- Footer -->
+  <footer class="bg-[#0f172a] text-gray-400 text-sm px-6 py-4 text-center shadow-inner mt-6">
+    <div class="max-w-4xl mx-auto">
+      <p>&copy; 2025 UniqueBlog. Admin Panel</p>
+      <div class="mt-2 space-x-4">
+        <a href="/admin/dashboard" class="hover:text-indigo-400 transition">Dashboard</a>
+        <a href="/" class="hover:text-indigo-400 transition">View Site</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
