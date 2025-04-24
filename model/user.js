@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const { createHash, randomBytes } = require("crypto");
 const {createToken} = require("../service/user");
+const { buffer } = require("stream/consumers");
 userSchema = new mongoose.Schema({
     // profileimage:{
     //     type:String,
@@ -20,7 +21,9 @@ userSchema = new mongoose.Schema({
     },
     salt:{
         type:String,
-    }
+    },
+
+    image:buffer
 })
 userSchema.pre("save",function(next){
     const user = this

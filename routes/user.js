@@ -7,8 +7,7 @@ const commun = require("../model/community")
 const annu = require("../model/annous")
 const metoadminn = require("../model/sedntoadmin")
 const { render } = require("ejs")
-// const multer  = require("multer")
-// const path = require("path")
+const upload = require("../conflig/multer")
 
 routes.get("/signup",(req,res)=>{
     res.render("signup")
@@ -98,9 +97,10 @@ routes.get("/deletecomment/:id",async(req,res)=>{
 routes.get("/post",(req,res)=>{
   res.render("post")
 })
-routes.post("/create",async(req,res)=>{
+routes.post("/create",upload.single('Image'),async(req,res)=>{
     const {title, content} = req.body
-     await post.create({
+    const result =  await post.create({
+        Image:req.file.buffer,
         title,
         content,
         createdBy:req.user._id,
@@ -119,6 +119,7 @@ routes.post("/text",async(req,res)=>{
   const texts = await commun.create({
     text:body.text,
     createdBy:req.user._id
+
   })
   console.log(texts)
   res.redirect("/community")

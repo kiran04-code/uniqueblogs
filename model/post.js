@@ -9,6 +9,7 @@ postSchema = new mongoose.Schema({
     type:String,
     require:true
    },
+   Image:Buffer,
    createdBy:{
     type:mongoose.Schema.Types.ObjectId,
     ref:"user"

@@ -33,11 +33,16 @@
   <main class="flex justify-center items-center min-h-screen px-4 py-16">
     <div class="bg-gray-900 bg-opacity-80 p-6 sm:p-10 rounded-3xl shadow-xl w-full max-w-2xl backdrop-blur-md border border-gray-800">
       <h2 class="text-3xl sm:text-4xl font-extrabold text-center text-indigo-400 mb-8">Create a New Blog</h2>
-      <form action="/create" method="POST" class="space-y-6">
+      <form action="/create" method="POST" class="space-y-6" enctype="multipart/form-data">
         
         <div>
           <label for="title" class="block text-sm font-medium text-gray-300 mb-1">Title</label>
           <input type="text" id="title" name="title" placeholder="Enter a catchy title" required
+                 class="w-full p-3 bg-gray-800 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+        </div>
+        <div>
+          <label for="title" class="block text-sm font-medium text-gray-300 mb-1">Title</label>
+          <input type="file" id="title" name="Image" placeholder="Upload the images" required
                  class="w-full p-3 bg-gray-800 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
         </div>
 
